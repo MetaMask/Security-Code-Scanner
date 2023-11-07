@@ -1,0 +1,18 @@
+name: 'Security Code Scanner'
+inputs:
+  repo: 
+    description: 'Repo to be scanned' 
+    required: true
+    
+runs:
+  using: 'composite'
+  steps:
+    - name: Check out repo to scan
+      uses: actions/checkout@v4
+      with: 
+        repository: ${{ inputs.repo }}
+        path: ${{ inputs.repo }}
+    - name: CodeQL Scan
+      uses: MetaMask/Appsec-CodeQL@gh-pages
+      with:
+        repo: ${{ inputs.repo }}
