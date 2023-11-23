@@ -19,7 +19,7 @@ runs:
         repository: ${{ inputs.repo }}
         path: ${{ inputs.repo }}
     - name: CodeQL Scan
-      uses: witmicko/CodeQL-action@pre-copy
+      uses: MetaMask/CodeQL-action@main
       with:
         repo: ${{ inputs.repo }}
         paths_ignored: ${{ inputs.paths_ignored }}
