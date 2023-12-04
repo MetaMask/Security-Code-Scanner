@@ -3,6 +3,12 @@ inputs:
   repo: 
     description: 'Repo to be scanned' 
     required: true
+  paths_ignored:
+    description: 'Comma delimited paths to ignore during scan' 
+    required: false
+  rules_excluded:
+    description: 'Comma delimited IDs of rules to exclude' 
+    required: false
     
 runs:
   using: 'composite'
@@ -13,6 +19,8 @@ runs:
         repository: ${{ inputs.repo }}
         path: ${{ inputs.repo }}
     - name: CodeQL Scan
-      uses: MetaMask/Appsec-CodeQL@gh-pages
+      uses: MetaMask/CodeQL-action@main
       with:
         repo: ${{ inputs.repo }}
+        paths_ignored: ${{ inputs.paths_ignored }}
+        rules_excluded: ${{ inputs.rules_excluded }}
