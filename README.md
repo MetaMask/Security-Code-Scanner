@@ -43,7 +43,10 @@ jobs:
         uses: <your-username>/Security-Code-Scanner@v1
         with:
           repo: ${{ github.repository }}
-```
+          paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
+          rules_excluded: ${{ github.event.inputs.rules_excluded || env.DEFAULT_RULES_EXCLUDED }}
+          mixpanel_project_token: ${{secrets.APPSEC_MIXPANEL_PROJECT_TOKEN}}
+          slack_webhook: ${{secrets.APPSEC_SLACK_WEBHOOK}}
 
 Replace `<your-username>` with your GitHub username or organization name where the action is hosted.
 
@@ -54,3 +57,4 @@ Replace `<your-username>` with your GitHub username or organization name where t
 ## Future Plans
 
 The action is in its initial phase, and we plan to integrate additional security scanning tools to widen our security coverage.
+```

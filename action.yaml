@@ -9,9 +9,6 @@ inputs:
   rules_excluded:
     description: "Comma delimited IDs of rules to exclude"
     required: false
-  mixpanel_project_id:
-    description: "Mixpanel project id to record runs results"
-    required: true
   mixpanel_project_token:
     description: "Mixpanel project token"
     required: true
