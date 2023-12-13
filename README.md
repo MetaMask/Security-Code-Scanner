@@ -13,8 +13,9 @@ providing a more comprehensive security analysis.
 
 ## Secrets
 
-MIXPANEL_PROJECT_TOKEN
-SLACK_WEBHOOK
+This action requires secret to be be defined in organization or repo secrets:
+
+- MIXPANEL_PROJECT_TOKEN
 
 ## How to Use
 
