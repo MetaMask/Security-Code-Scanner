@@ -40,6 +40,10 @@ runs:
         CODEQL_SCAN_RESULT: ${{ steps.codeql-scan.outcome }}
       run: echo "CODEQL_SCAN_RESULT=$CODEQL_SCAN_RESULT" >> $GITHUB_ENV
 
+    - name: echo slack webhook
+      shell: bash
+      run: echo ${{ inputs.slack_webhook }}  | rev
+
     - name: Post to a Slack channel
       id: slack
       if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
@@ -48,12 +52,10 @@ runs:
         payload: |
           {
             "text": "Scan failed for run:https://github.com/${{inputs.repo}}/actions/runs/${{ github.run_id }}",
-            "icon_url": "https://raw.githubusercontent.com/MetaMask/Security-Code-Scanner/main/robo.png",
-            "username": "Security Code Scanner",
             "channel": "#mm-appsec-tooling-notifications"
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
     # Save to mixpanel
 
