@@ -1,11 +1,11 @@
 import Mixpanel from "mixpanel";
 
-main().catch((error: Error): void => {
+main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
 
-async function main(): Promise<void> {
+async function main() {
   const MIXPANEL_PROJECT_TOKEN = process.env.MIXPANEL_PROJECT_TOKEN || "";
   const CODEQL_SCAN_RESULT = process.env.CODEQL_SCAN_RESULT || "";
   const RUN_ID = process.env.RUN_ID || "";
@@ -20,7 +20,7 @@ async function main(): Promise<void> {
   }
   const mixpanel = Mixpanel.init(MIXPANEL_PROJECT_TOKEN);
 
-  const event: Mixpanel.Event = {
+  const event = {
     event: CODEQL_SCAN_RESULT,
     properties: {
       distinct_id: RUN_REPO,

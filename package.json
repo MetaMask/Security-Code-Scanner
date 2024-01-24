@@ -4,7 +4,7 @@
   "description": "## Overview",
   "main": "index.js",
   "scripts": {
-    "log-to-mixpanel": "ts-node-esm ./src/log-to-mixpanel.ts"
+    "log-to-mixpanel": "node ./src/log-to-mixpanel.js"
   },
   "type": "module",
   "keywords": [],
@@ -12,11 +12,5 @@
   "license": "ISC",
   "dependencies": {
     "mixpanel": "^0.18.0"
-  },
-  "devDependencies": {
-    "@tsconfig/node21": "^21.0.0",
-    "@types/node": "^20.10.4",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
   }
 }

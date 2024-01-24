@@ -16,6 +16,7 @@ providing a more comprehensive security analysis.
 This action requires secret to be be defined in organization or repo secrets:
 
 - MIXPANEL_PROJECT_TOKEN
+- APPSEC_BOT_SLACK_WEBHOOK
 
 ## How to Use
 
