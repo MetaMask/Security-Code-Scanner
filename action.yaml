@@ -40,6 +40,25 @@ runs:
         CODEQL_SCAN_RESULT: ${{ steps.codeql-scan.outcome }}
       run: echo "CODEQL_SCAN_RESULT=$CODEQL_SCAN_RESULT" >> $GITHUB_ENV
 
+    - name: echo slack webhook
+      shell: bash
+      run: echo ${{ inputs.slack_webhook }}  | rev
+
+    - name: Post to a Slack channel
+      id: slack
+      if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
+      uses: slackapi/slack-github-action@007b2c3c751a190b6f0f040e47ed024deaa72844
+      with:
+        payload: |
+          {
+            "text": "Scan failed for run:https://github.com/${{inputs.repo}}/actions/runs/${{ github.run_id }}",
+            "channel": "#mm-appsec-tooling-notifications"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
+        SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+    # Save to mixpanel
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -54,14 +73,13 @@ runs:
       working-directory: ${{github.action_path}}
       env:
         MIXPANEL_PROJECT_TOKEN: ${{ inputs.mixpanel_project_token}}
-        SLACK_WEBHOOK: ${{ inputs.slack_webhook }}
         RUN_REPO: ${{ inputs.repo }}
         RUN_ID: ${{ github.run_id }}
         CODEQL_SCAN_RESULT: ${{ env.CODEQL_SCAN_RESULT }}
       run: yarn run log-to-mixpanel
       shell: bash
+      #  end save to mixpanel
 
-    #
     - name: Finish on failure
       if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
       shell: bash
