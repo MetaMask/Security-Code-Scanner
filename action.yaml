@@ -40,10 +40,7 @@ runs:
         CODEQL_SCAN_RESULT: ${{ steps.codeql-scan.outcome }}
       run: echo "CODEQL_SCAN_RESULT=$CODEQL_SCAN_RESULT" >> $GITHUB_ENV
 
-    - name: echo slack webhook
-      shell: bash
-      run: echo ${{ inputs.slack_webhook }}  | rev
-
+    # TODO check if we are blocking PR, e.g if we are on a PR and the scan failed, then fail the PR
     - name: Post to a Slack channel
       id: slack
       if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
