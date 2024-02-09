@@ -10,6 +10,14 @@ providing a more comprehensive security analysis.
 ## Inputs
 
 - **`repo`**: (Required) The name of the repository you want to scan.
+- **`mixpanel_project_token`**: (Required) Token belonging to a mixpanel project that is used to track build passes & failures.
+- **`slack_webhook`**: (Required) Slack webhook URL.
+
+- **`paths_ignored`**: (optional) Code paths which are to be ignored.
+- **`rules_excluded`**: (optional) Code scanning rules to exclude.
+
+
+We recommend setting up an organization or repository secret to pass in the `mixpanel_project_token` and `slack_webhook`. This ensures they are not disclosed in the source code.
 
 ## How to Use
 
@@ -34,13 +42,13 @@ jobs:
           repository: ${{ github.repository }}
 
       - name: Security Code Scanner
-        uses: MetaMask/Security-Code-Scanner@v1
+        uses: MetaMask/Security-Code-Scanner@main
         with:
           repo: ${{ github.repository }}
           paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
           rules_excluded: ${{ github.event.inputs.rules_excluded || env.DEFAULT_RULES_EXCLUDED }}
-          mixpanel_project_token: <Your Mixpanel project for build monitoring>
-          slack_webhook: <Webhook URL for slack notifications>
+          mixpanel_project_token: ${{secrets.<YOUR TOKEN SECRET NAME>}}
+          slack_webhook: ${{secrets.<YOUR WEBHOOK SECRET NAME>}}
 ```
 
 ## Features
