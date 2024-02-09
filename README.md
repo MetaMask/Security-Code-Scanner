@@ -28,31 +28,30 @@ This action requires secret to be be defined in organization or repo secrets:
 To use the Security Code Scanner, add the following steps to your workflow file:
 
 ```yaml
-name: MetaMask Security Code Scanner
+name: "MetaMask Security Code Scanner"
 
 on:
   push:
-    branches: [main]
+    branches: [ 'main' ]
   pull_request:
-    branches: [main]
-
+    branches: [ 'main' ]
+  
 jobs:
-  security-scan:
+  run-security-scan:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check out repo to scan
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-
-      - name: Security Code Scanner
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:   
+      - name: MetaMask Security Code Scanner
         uses: MetaMask/Security-Code-Scanner@main
         with:
           repo: ${{ github.repository }}
           paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
           rules_excluded: ${{ github.event.inputs.rules_excluded || env.DEFAULT_RULES_EXCLUDED }}
           mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
-          slack_webhook: ${{secrets.APPSEC_BOT_SLACK_WEBHOOK}}
+          slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
 
 ## Features
