@@ -20,7 +20,7 @@ providing a more comprehensive security analysis.
 
 This action requires secret to be be defined in organization or repo secrets:
 
-- MIXPANEL_PROJECT_TOKEN
+- SECURITY_CODE_SCANNER_MIXPANEL_TOKEN
 - APPSEC_BOT_SLACK_WEBHOOK
 
 ## How to Use
@@ -51,7 +51,7 @@ jobs:
           repo: ${{ github.repository }}
           paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
           rules_excluded: ${{ github.event.inputs.rules_excluded || env.DEFAULT_RULES_EXCLUDED }}
-          mixpanel_project_token: ${{secrets.MIXPANEL_PROJECT_TOKEN}}
+          mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
           slack_webhook: ${{secrets.APPSEC_BOT_SLACK_WEBHOOK}}
 ```
 
