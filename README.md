@@ -16,8 +16,12 @@ providing a more comprehensive security analysis.
 - **`paths_ignored`**: (optional) Code paths which are to be ignored.
 - **`rules_excluded`**: (optional) Code scanning rules to exclude.
 
+## Secrets
 
-We recommend setting up an organization or repository secret to pass in the `mixpanel_project_token` and `slack_webhook`. This ensures they are not disclosed in the source code.
+This action requires secret to be be defined in organization or repo secrets:
+
+- MIXPANEL_PROJECT_TOKEN
+- APPSEC_BOT_SLACK_WEBHOOK
 
 ## How to Use
 
@@ -47,8 +51,8 @@ jobs:
           repo: ${{ github.repository }}
           paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
           rules_excluded: ${{ github.event.inputs.rules_excluded || env.DEFAULT_RULES_EXCLUDED }}
-          mixpanel_project_token: ${{secrets.<YOUR TOKEN SECRET NAME>}}
-          slack_webhook: ${{secrets.<YOUR WEBHOOK SECRET NAME>}}
+          mixpanel_project_token: ${{secrets.MIXPANEL_PROJECT_TOKEN}}
+          slack_webhook: ${{secrets.APPSEC_BOT_SLACK_WEBHOOK}}
 ```
 
 ## Features
