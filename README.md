@@ -34,7 +34,7 @@ jobs:
           repository: ${{ github.repository }}
 
       - name: Security Code Scanner
-        uses: <your-username>/Security-Code-Scanner@v1
+        uses: MetaMask/Security-Code-Scanner@v1
         with:
           repo: ${{ github.repository }}
           paths_ignored: ${{ github.event.inputs.paths_ignored || env.DEFAULT_PATHS_IGNORED }}
@@ -43,8 +43,6 @@ jobs:
           slack_webhook: <Webhook URL for slack notifications>
 ```
 
-Replace `<your-username>` with your GitHub username or organization name where the action is hosted.
-
 ## Features
 
 - **CodeQL Analysis**: Leverages [MetaMask/Appsec-CodeQL](https://github.com/MetaMask/codeql-action), a wrapper around GitHub's CodeQL](https://codeql.github.com/) to identify vulnerabilities in the codebase.
@@ -52,3 +50,7 @@ Replace `<your-username>` with your GitHub username or organization name where t
 ## Future Plans
 
 The action is in its initial phase, and we plan to integrate additional security scanning tools to widen our security coverage.
+
+## Disclaimer
+
+This action is developed for the MetaMask engineering team, and may require additional configuration if used in other organizations.
