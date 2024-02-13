@@ -18,7 +18,7 @@ providing a more comprehensive security analysis.
 
 ## Setup
 
-To use the Security Code Scanner, add the following steps to your workflow file:
+To use the Security Code Scanner, create a `security-code-scanner.yml` file in your repository's `.github/workflows/` folder:
 
 ```yaml
 name: "MetaMask Security Code Scanner"
