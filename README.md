@@ -16,14 +16,7 @@ providing a more comprehensive security analysis.
 - **`paths_ignored`**: (optional) Code paths which are to be ignored.
 - **`rules_excluded`**: (optional) Code scanning rules to exclude.
 
-## Secrets
-
-This action requires secret to be be defined in organization or repo secrets:
-
-- SECURITY_CODE_SCANNER_MIXPANEL_TOKEN
-- APPSEC_BOT_SLACK_WEBHOOK
-
-## How to Use
+## Setup
 
 To use the Security Code Scanner, add the following steps to your workflow file:
 
@@ -53,6 +46,14 @@ jobs:
           mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
           slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
+
+
+## Secrets
+
+Repositories in the MetaMask GitHub organization will pass the following secrets to the scanner to assist with logging and monitoring. However, these values can be replaced if used in other contexts.
+
+- SECURITY_CODE_SCANNER_MIXPANEL_TOKEN
+- APPSEC_BOT_SLACK_WEBHOOK
 
 ## Features
 
