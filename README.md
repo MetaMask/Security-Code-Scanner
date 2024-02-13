@@ -13,8 +13,8 @@ providing a more comprehensive security analysis.
 - **`mixpanel_project_token`**: (Required) Token belonging to a mixpanel project that is used to track build passes & failures.
 - **`slack_webhook`**: (Required) Slack webhook URL.
 
-- **`paths_ignored`**: (optional) Code paths which are to be ignored.
-- **`rules_excluded`**: (optional) Code scanning rules to exclude.
+- **`paths_ignored`**: (optional) Code paths which are to be ignored. Each should be listed on a new line.
+- **`rules_excluded`**: (optional) Code scanning rules to exclude. Each should be listed on a new line.
 
 ## Setup
 
@@ -41,8 +41,12 @@ jobs:
         uses: MetaMask/Security-Code-Scanner@main
         with:
           repo: ${{ github.repository }}
-          paths_ignored: ['test/']
-          rules_excluded: ['js/foobar']
+          paths_ignored: |
+            data/
+            tests/
+            foobar.js
+          rules_excluded: |
+            rule1
           mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
           slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
@@ -57,11 +61,7 @@ Repositories in the MetaMask GitHub organization will pass the following secrets
 
 ## Features
 
-- **CodeQL Analysis**: Leverages [MetaMask/Appsec-CodeQL](https://github.com/MetaMask/codeql-action), a wrapper around GitHub's CodeQL](https://codeql.github.com/) to identify vulnerabilities in the codebase.
-
-## Future Plans
-
-The action is in its initial phase, and we plan to integrate additional security scanning tools to widen our security coverage.
+- **CodeQL Analysis**: Leverages [MetaMask/Appsec-CodeQL](https://github.com/MetaMask/codeql-action), a wrapper around GitHub's CodeQL engine](https://codeql.github.com/), to identify vulnerabilities in the codebase.
 
 ## Disclaimer
 
