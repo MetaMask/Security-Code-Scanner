@@ -61,7 +61,7 @@ Repositories in the MetaMask GitHub organization will pass the following secrets
 
 ## Features
 
-- **CodeQL Analysis**: Leverages [MetaMask/Appsec-CodeQL](https://github.com/MetaMask/codeql-action), a wrapper around GitHub's CodeQL engine](https://codeql.github.com/), to identify vulnerabilities in the codebase.
+- **CodeQL Analysis**: Leverages [MetaMask/Appsec-CodeQL](https://github.com/MetaMask/codeql-action), a wrapper around GitHub's [CodeQL engine](https://codeql.github.com/), to identify vulnerabilities in the codebase.
 
 ## Disclaimer
 
