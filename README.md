@@ -42,9 +42,13 @@ jobs:
         with:
           repo: ${{ github.repository }}
           paths_ignored: |
-            data/
-            tests/
-            foobar.js
+            e2e/
+            docs/
+            storybook/
+            '**/*.test.js'
+            '**/*.test.ts'
+            '**/*.test.jsx'
+            '**/*.test.tsx'
           rules_excluded: |
             rule1
           mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
