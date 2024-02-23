@@ -43,7 +43,7 @@ runs:
     # TODO check if we are blocking PR, e.g if we are on a PR and the scan failed, then fail the PR
     - name: Post to a Slack channel
       id: slack
-      if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
+      if: ${{ env.CODEQL_SCAN_RESULT == 'failure' && inputs.slack_webhook != "" }}
       uses: slackapi/slack-github-action@007b2c3c751a190b6f0f040e47ed024deaa72844
       with:
         payload: |
@@ -67,6 +67,7 @@ runs:
       shell: bash
 
     - name: Save run metadata to mixpanel
+      if: ${{ env.inputs.mixpanel_project_token != '' }}
       working-directory: ${{github.action_path}}
       env:
         MIXPANEL_PROJECT_TOKEN: ${{ inputs.mixpanel_project_token}}
