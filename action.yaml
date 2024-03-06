@@ -12,9 +12,13 @@ inputs:
   mixpanel_project_token:
     description: "Mixpanel project token"
     required: true
+  project_metrics_token:
+    description: "Secret token used to record scanner metrics"
+    required: true
   slack_webhook:
     description: "Slack webhook for notifications"
     required: true
+
 
 runs:
   using: "composite"
