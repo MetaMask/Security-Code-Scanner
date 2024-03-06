@@ -19,7 +19,6 @@ inputs:
     description: "Slack webhook for notifications"
     required: true
 
-
 runs:
   using: "composite"
   steps:
