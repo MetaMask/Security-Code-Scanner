@@ -21,7 +21,7 @@ providing a more comprehensive security analysis.
 To use the Security Code Scanner, create a `security-code-scanner.yml` file in your repository's `.github/workflows/` folder:
 
 ```yaml
-name: "MetaMask Security Code Scanner"
+name: 'MetaMask Security Code Scanner'
 
 on:
   push:
@@ -41,13 +41,29 @@ jobs:
         uses: MetaMask/Security-Code-Scanner@main
         with:
           repo: ${{ github.repository }}
-          paths_ignored: |
-            data/
-            tests/
-            foobar.js
+           paths_ignored: |
+            .storybook/
+            '**/__snapshots__/'
+            '**/*.snap'
+            '**/*.stories.js'
+            '**/*.stories.tsx'
+            '**/*.test.browser.ts*'
+            '**/*.test.js*'
+            '**/*.test.ts*'
+            '**/fixtures/'
+            '**/jest.config.js'
+            '**/jest.environment.js'
+            '**/mocks/'
+            '**/test*/'
+            docs/
+            e2e/
+            merged-packages/
+            node_modules
+            storybook/
+            test*/
           rules_excluded: |
             rule1
-          mixpanel_project_token: ${{secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN}}
+          mixpanel_project_token: ${{ secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN }}
           slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
 
