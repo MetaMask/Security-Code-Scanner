@@ -11,7 +11,10 @@ inputs:
     required: false
   mixpanel_project_token:
     description: "Mixpanel project token"
-    required: true
+    required: false
+  project_metrics_token:
+    description: "Analytics token to log failed builds"
+    required: false
   slack_webhook:
     description: "Slack webhook for notifications"
     required: true
