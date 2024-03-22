@@ -10,9 +10,9 @@ providing a more comprehensive security analysis.
 ## Inputs
 
 - **`repo`**: (Required) The name of the repository you want to scan.
-- **`mixpanel_project_token`**: (Required) Token belonging to a mixpanel project that is used to track build passes & failures.
 - **`slack_webhook`**: (Required) Slack webhook URL.
 
+- **`project_metrics_token`**: (optional) Token belonging to a mixpanel project that is used to track build passes & failures.
 - **`paths_ignored`**: (optional) Code paths which are to be ignored. Each should be listed on a new line.
 - **`rules_excluded`**: (optional) Code scanning rules to exclude. Each should be listed on a new line.
 
@@ -63,7 +63,7 @@ jobs:
             test*/
           rules_excluded: |
             rule1
-          mixpanel_project_token: ${{ secrets.SECURITY_CODE_SCANNER_MIXPANEL_TOKEN }}
+          project_metrics_token: ${{ secrets.SECURITY_SCAN_METRICS_TOKEN }}
           slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
 
@@ -72,7 +72,7 @@ jobs:
 
 Repositories in the MetaMask GitHub organization will pass the following secrets to the scanner to assist with logging and monitoring. However, these values can be replaced if used in other contexts.
 
-- SECURITY_CODE_SCANNER_MIXPANEL_TOKEN
+- SECURITY_SCAN_METRICS_TOKEN
 - APPSEC_BOT_SLACK_WEBHOOK
 
 ## Features
