@@ -16,12 +16,10 @@ async function main(){
       owner,
       repo,
     });
-    ghasEnabled = true;
   } catch (error) {
     if (error.message.includes("Advanced Security must be enabled")) {
       const message =
         "GitHub Advanced Security is NOT enabled. Code Scanner will not run.";
-      core.warning(message);
       core.notice(
         `Go to https://github.com/${owner}/${repo}/settings/security_analysis to enable GitHub Advanced Security.`
       );
