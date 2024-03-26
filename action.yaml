@@ -27,6 +27,24 @@ runs:
       with:
         repository: ${{ inputs.repo }}
         path: ${{ inputs.repo }}
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      working-directory: ${{github.action_path}}
+      run: yarn --immutable
+      shell: bash
+
+    - name: Check if GHAS is enabled
+      working-directory: ${{github.action_path}}
+      id: advanced_security_check
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: yarn run check-ghas
+      shell: bash
 
     - name: CodeQL Scan
       id: codeql-scan
@@ -58,16 +76,6 @@ runs:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
     # Save to mixpanel
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-
-    - name: Install dependencies
-      working-directory: ${{github.action_path}}
-      run: yarn --immutable
-      shell: bash
 
     - name: Save run metadata to mixpanel
       if: ${{ env.inputs.mixpanel_project_token != '' }}
