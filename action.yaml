@@ -18,6 +18,9 @@ inputs:
   slack_webhook:
     description: "Slack webhook for notifications"
     required: true
+  custom_queries_pat:
+    description: "Personal access token for custom queries"
+    required: true
 
 runs:
   using: "composite"
@@ -54,6 +57,7 @@ runs:
         repo: ${{ inputs.repo }}
         paths_ignored: ${{ inputs.paths_ignored }}
         rules_excluded: ${{ inputs.rules_excluded }}
+        custom_queries_pat: ${{inputs.custom_queries_pat}}
 
     - name: Save failure
       shell: bash
