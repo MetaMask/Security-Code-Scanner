@@ -18,9 +18,6 @@ inputs:
   slack_webhook:
     description: "Slack webhook for notifications"
     required: true
-  custom_queries_pat:
-    description: "Personal access token for custom queries"
-    required: true
 
 runs:
   using: "composite"
