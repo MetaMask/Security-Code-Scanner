@@ -58,7 +58,7 @@ runs:
     - name: Semgrep Scan
       id: semgrep-scan
       continue-on-error: true
-      uses: MetaMask/Semgrep-action@ellul/init
+      uses: MetaMask/Semgrep-action@main
       with:
         paths_ignored: ${{ inputs.paths_ignored }}
 
@@ -89,7 +89,6 @@ runs:
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-    # Save to mixpanel
 
     - name: Save run metadata to mixpanel
       if: ${{ env.inputs.mixpanel_project_token != '' }}
@@ -101,7 +100,6 @@ runs:
         CODEQL_SCAN_RESULT: ${{ env.SCAN_RESULT }}
       run: yarn run log-to-mixpanel
       shell: bash
-      #  end save to mixpanel
 
     - name: Finish on failure
       if: ${{ env.SCAN_RESULT == 'failure' }}
