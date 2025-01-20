@@ -41,7 +41,7 @@ jobs:
         uses: MetaMask/Security-Code-Scanner@main
         with:
           repo: ${{ github.repository }}
-           paths_ignored: |
+          paths_ignored: |
             .storybook/
             '**/__snapshots__/'
             '**/*.snap'
