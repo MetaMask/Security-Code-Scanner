@@ -55,16 +55,30 @@ runs:
         paths_ignored: ${{ inputs.paths_ignored }}
         rules_excluded: ${{ inputs.rules_excluded }}
 
-    - name: Save failure
+    - name: Semgrep Scan
+      id: semgrep-scan
+      continue-on-error: true
+      uses: MetaMask/Semgrep-action@main
+      with:
+        paths_ignored: ${{ inputs.paths_ignored }}
+
+    - name: Determine Overall Scan Success
       shell: bash
       env:
         CODEQL_SCAN_RESULT: ${{ steps.codeql-scan.outcome }}
-      run: echo "CODEQL_SCAN_RESULT=$CODEQL_SCAN_RESULT" >> $GITHUB_ENV
+        SEMGREP_SCAN_RESULT: ${{ steps.semgrep-scan.outcome }}
+      run: |
+        if [[ "$CODEQL_SCAN_RESULT" == "failure" || "$SEMGREP_SCAN_RESULT" == "failure" ]]; then
+          SCAN_RESULT='failure'
+        else
+          SCAN_RESULT=$CODEQL_SCAN_RESULT
+        fi
+        echo "SCAN_RESULT=$SCAN_RESULT" >> $GITHUB_ENV
 
     # TODO check if we are blocking PR, e.g if we are on a PR and the scan failed, then fail the PR
     - name: Post to a Slack channel
       id: slack
-      if: ${{ env.CODEQL_SCAN_RESULT == 'failure' && inputs.slack_webhook != '' }}
+      if: ${{ env.SCAN_RESULT == 'failure' && inputs.slack_webhook != '' }}
       uses: slackapi/slack-github-action@007b2c3c751a190b6f0f040e47ed024deaa72844
       with:
         payload: |
@@ -75,7 +89,6 @@ runs:
       env:
         SLACK_WEBHOOK_URL: ${{ inputs.slack_webhook }}
         SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
-    # Save to mixpanel
 
     - name: Save run metadata to mixpanel
       if: ${{ env.inputs.mixpanel_project_token != '' }}
@@ -84,12 +97,11 @@ runs:
         MIXPANEL_PROJECT_TOKEN: ${{ inputs.mixpanel_project_token}}
         RUN_REPO: ${{ inputs.repo }}
         RUN_ID: ${{ github.run_id }}
-        CODEQL_SCAN_RESULT: ${{ env.CODEQL_SCAN_RESULT }}
+        CODEQL_SCAN_RESULT: ${{ env.SCAN_RESULT }}
       run: yarn run log-to-mixpanel
       shell: bash
-      #  end save to mixpanel
 
     - name: Finish on failure
-      if: ${{ env.CODEQL_SCAN_RESULT == 'failure' }}
+      if: ${{ env.SCAN_RESULT == 'failure' }}
       shell: bash
       run: exit 1
