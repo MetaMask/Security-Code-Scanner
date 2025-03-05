@@ -27,7 +27,7 @@ on:
   push:
     branches: [ 'main' ]
   pull_request:
-    branches: [ 'main' ]
+  workflow_dispatch:
   
 jobs:
   run-security-scan:
