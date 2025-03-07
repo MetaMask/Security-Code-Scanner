@@ -1,4 +1,4 @@
-# Security Code Scanner
+# `MetaMask/action-security-code-scanner`
 
 ## Overview
 
@@ -25,7 +25,8 @@ name: 'MetaMask Security Code Scanner'
 
 on:
   push:
-    branches: ['main']
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -38,7 +39,7 @@ jobs:
       security-events: write
     steps:
       - name: MetaMask Security Code Scanner
-        uses: MetaMask/Security-Code-Scanner@main
+        uses: MetaMask/action-security-code-scanner@v1
         with:
           repo: ${{ github.repository }}
           paths_ignored: |

@@ -1,11 +1,11 @@
 {
-  "name": "security-code-scanner",
+  "name": "@metamask/action-security-code-scanner",
   "version": "0.0.0",
   "description": "Security code scanner for MetaMask",
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/security-code-scanner.git"
+    "url": "https://github.com/MetaMask/action-security-code-scanner.git"
   },
   "license": "ISC",
   "author": "",
