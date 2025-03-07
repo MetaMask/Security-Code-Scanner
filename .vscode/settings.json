@@ -1,6 +1,4 @@
 {
   "prettier.configPath": ".prettierrc",
-  "cSpell.words": [
-    "ghas"
-  ]
+  "cSpell.words": ["ghas"]
 }

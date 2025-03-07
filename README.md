@@ -25,10 +25,10 @@ name: 'MetaMask Security Code Scanner'
 
 on:
   push:
-    branches: [ 'main' ]
+    branches: ['main']
   pull_request:
   workflow_dispatch:
-  
+
 jobs:
   run-security-scan:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
       actions: read
       contents: read
       security-events: write
-    steps:   
+    steps:
       - name: MetaMask Security Code Scanner
         uses: MetaMask/Security-Code-Scanner@main
         with:
@@ -66,7 +66,6 @@ jobs:
           project_metrics_token: ${{ secrets.SECURITY_SCAN_METRICS_TOKEN }}
           slack_webhook: ${{ secrets.APPSEC_BOT_SLACK_WEBHOOK }}
 ```
-
 
 ## Secrets
 

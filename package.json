@@ -2,19 +2,41 @@
   "name": "security-code-scanner",
   "version": "1.0.0",
   "description": "## Overview",
-  "main": "index.js",
-  "scripts": {
-    "log-to-mixpanel": "node ./scripts/log-to-mixpanel.js",
-    "check-ghas": "node ./scripts/check-ghas.js"
-  },
-  "type": "module",
   "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MetaMask/security-code-scanner.git"
+  },
   "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "check-ghas": "node ./scripts/check-ghas.js",
+    "lint": "yarn lint:misc --check && yarn lint:dependencies --check && yarn lint:changelog",
+    "lint:changelog": "auto-changelog validate --prettier",
+    "lint:dependencies": "depcheck && yarn dedupe",
+    "lint:fix": "yarn lint:misc --write && yarn lint:dependencies && yarn lint:changelog --fix",
+    "lint:misc": "prettier '**/*.json' '**/*.md' '**/*.yml' '**/*.sh' '!.yarnrc.yml' --ignore-path .gitignore --no-error-on-unmatched-pattern",
+    "log-to-mixpanel": "node ./scripts/log-to-mixpanel.js"
+  },
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
     "mixpanel": "^0.18.0"
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  "devDependencies": {
+    "@lavamoat/allow-scripts": "^3.3.1",
+    "@lavamoat/preinstall-always-fail": "^2.1.0",
+    "@metamask/auto-changelog": "^4.1.0",
+    "depcheck": "^1.4.7",
+    "prettier": "^3.5.3",
+    "prettier-plugin-packagejson": "^2.5.10",
+    "prettier-plugin-sh": "^0.15.0"
+  },
+  "packageManager": "yarn@4.7.0",
+  "lavamoat": {
+    "allowScripts": {
+      "@lavamoat/preinstall-always-fail": false
+    }
+  }
 }
