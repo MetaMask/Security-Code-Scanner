@@ -221,6 +221,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@metamask/action-security-code-scanner@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@metamask/action-security-code-scanner@workspace:."
+  dependencies:
+    "@actions/core": "npm:^1.10.1"
+    "@actions/github": "npm:^6.0.0"
+    "@lavamoat/allow-scripts": "npm:^3.3.1"
+    "@lavamoat/preinstall-always-fail": "npm:^2.1.0"
+    "@metamask/auto-changelog": "npm:^4.1.0"
+    depcheck: "npm:^1.4.7"
+    mixpanel: "npm:^0.18.0"
+    prettier: "npm:^3.5.3"
+    prettier-plugin-packagejson: "npm:^2.5.10"
+    prettier-plugin-sh: "npm:^0.15.0"
+  languageName: unknown
+  linkType: soft
+
 "@metamask/auto-changelog@npm:^4.1.0":
   version: 4.1.0
   resolution: "@metamask/auto-changelog@npm:4.1.0"
@@ -2086,23 +2103,6 @@ __metadata:
   checksum: 10/7eaf7a0cf37cc27b42fb3ef6a9b1df6e93a1c6d98c6c6702b02fe262d5fcbd89db63320793b99b21cb5348097d0a53de81bd5f4e8b86e20cc9412e3f1cfb4e83
   languageName: node
   linkType: hard
-
-"security-code-scanner@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "security-code-scanner@workspace:."
-  dependencies:
-    "@actions/core": "npm:^1.10.1"
-    "@actions/github": "npm:^6.0.0"
-    "@lavamoat/allow-scripts": "npm:^3.3.1"
-    "@lavamoat/preinstall-always-fail": "npm:^2.1.0"
-    "@metamask/auto-changelog": "npm:^4.1.0"
-    depcheck: "npm:^1.4.7"
-    mixpanel: "npm:^0.18.0"
-    prettier: "npm:^3.5.3"
-    prettier-plugin-packagejson: "npm:^2.5.10"
-    prettier-plugin-sh: "npm:^0.15.0"
-  languageName: unknown
-  linkType: soft
 
 "semver-compare@npm:^1.0.0":
   version: 1.0.0
