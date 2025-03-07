@@ -8,10 +8,7 @@ jobs:
     name: Prepare
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
       - name: Checkout and setup environment
-        id: checkout-and-setup
         uses: MetaMask/action-checkout-and-setup@v1
         with:
           is-high-risk-environment: false
@@ -22,10 +19,7 @@ jobs:
     needs: prepare
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
       - name: Checkout and setup environment
-        id: checkout-and-setup
         uses: MetaMask/action-checkout-and-setup@v1
         with:
           is-high-risk-environment: false
