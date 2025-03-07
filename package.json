@@ -1,7 +1,7 @@
 {
   "name": "security-code-scanner",
-  "version": "1.0.0",
-  "description": "## Overview",
+  "version": "0.0.0",
+  "description": "Security code scanner for MetaMask",
   "keywords": [],
   "repository": {
     "type": "git",
