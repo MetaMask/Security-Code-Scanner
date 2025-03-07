@@ -1,5 +1,5 @@
-# TODO: finish implementation of this workflow, currently deprioritised but leaving this in as a reminder 
-name: "MetaMask Security Action Webhook"
+# TODO: finish implementation of this workflow, currently deprioritised but leaving this in as a reminder
+name: 'MetaMask Security Action Webhook'
 
 on:
   repository_dispatch:
@@ -22,10 +22,8 @@ jobs:
       security-events: write
       statuses: write
     runs-on: ubuntu-latest
-    steps:   
+    steps:
       - name: echo stuff
         run: |
           echo " GOT IT"
         shell: bash
-
-          
