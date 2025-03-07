@@ -24,7 +24,6 @@ jobs:
         with:
           is-high-risk-environment: false
           cache-node-modules: true
-          node-version: ${{ matrix.node-version }}
       - run: yarn lint
       - name: Validate RC changelog
         if: ${{ startsWith(github.head_ref, 'release/') }}
